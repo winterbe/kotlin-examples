@@ -46,12 +46,9 @@ class BasicExamples {
     }
 
     @Test
-    fun `create range of ints`() {
-        fun range(start: Int, end: Int) =
-            generateSequence(start - 1) { it + 1 }
-                .take(end)
-
-        val result = range(start = 1, end = 6)
+    fun `create sequence from a range of numbers`() {
+        val result = (1..6)
+            .asSequence()
             .filter { it % 2 == 1 }
             .toList()
 
