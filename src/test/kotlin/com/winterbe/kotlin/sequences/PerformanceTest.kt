@@ -8,7 +8,7 @@ class PerformanceTest {
 
     @Test
     fun testPerf1() {
-        val sequence = generateSequence(1) { it + 1 }.take(50000000)
+        val sequence = generateSequence(1) { it + 1 }.take(50_000_000)
         val list = sequence.toList()
         measure("list - filter - average") {
             list.filter { it % 3 == 0 }.average()
@@ -18,7 +18,7 @@ class PerformanceTest {
 
     @Test
     fun testPerf2() {
-        val sequence = generateSequence(1) { it + 1 }.take(50000000)
+        val sequence = generateSequence(1) { it + 1 }.take(50_000_000)
         val list = sequence.toList()
         measure("list - filter - sum") {
             list.filter { it % 3 == 0 }.sum()
@@ -28,7 +28,7 @@ class PerformanceTest {
 
     @Test
     fun testPerf3() {
-        val sequence = generateSequence(1) { it + 1 }.take(50000000)
+        val sequence = generateSequence(1) { it + 1 }.take(50_000_000)
         measure("sequence - filter - average") {
             sequence.filter { it % 3 == 0 }.average()
         }
@@ -37,7 +37,7 @@ class PerformanceTest {
 
     @Test
     fun testPerf4() {
-        val sequence = generateSequence(1) { it + 1 }.take(50000000)
+        val sequence = generateSequence(1) { it + 1 }.take(50_000_000)
         measure("sequence - filter - sum") {
             sequence.filter { it % 3 == 0 }.sum()
         }
@@ -46,6 +46,7 @@ class PerformanceTest {
 
     private fun measure(name: String, block: () -> Unit) {
         val nanoTime = measureNanoTime(block)
-        println("$name: ${TimeUnit.NANOSECONDS.toMillis(nanoTime)} ms")
+        val millis = TimeUnit.NANOSECONDS.toMillis(nanoTime)
+        println("$name: $millis ms")
     }
 }
